@@ -3,17 +3,11 @@ import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 
-const Model1 = () => {
+const ModelGrande3 = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!mountRef.current) return;
-
-
-    // Limpia el div antes de agregar el canvas
-    while (mountRef.current.firstChild) {
-    mountRef.current.removeChild(mountRef.current.firstChild);
-    }
 
     // Escena, cámara, renderer
     const scene = new THREE.Scene();
@@ -28,9 +22,19 @@ const Model1 = () => {
     camera.position.set(1.5, 1.5, 6);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(500, 300);
-    mountRef.current.appendChild(renderer.domElement);
+    const width = window.innerWidth - 300;
+    const height = window.innerHeight - 300;
+    renderer.setSize(width, height);
+    renderer.domElement.style.margin = "100px";
+    renderer.domElement.style.borderRadius = "16px";
+    renderer.domElement.style.border = "5px solid black";
+
     
+    // Evita agregar el canvas dos veces
+    if (mountRef.current.childElementCount === 0) {
+    mountRef.current.appendChild(renderer.domElement);
+
+  }
 
     // Luz
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -55,7 +59,7 @@ const Model1 = () => {
     // Cargar modelo GLB/GLTF
     const loader = new GLTFLoader();
     loader.load(
-      "/assetsModel/mordecai_fusionfall_heroes.glb", // asegúrate de que la ruta sea correcta
+      "/assetsModel/skips.glb", // asegúrate de que la ruta sea correcta
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(1, 1, 1);
@@ -83,7 +87,7 @@ const Model1 = () => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: "100vw", height: "100vh" }} />;
+  return <div ref={mountRef} style={{ width: "80vw", height: "40vh" }} />;
 };
 
-export default Model1;
+export default ModelGrande3;

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";// Importacion de la libreria link
+
 function Header (){
     return (
 
@@ -14,13 +16,20 @@ function Header (){
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav me-auto mb-2 mb-md-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <Link className="nav-link active" aria-current="page" to="/Home">Home</Link>
+                            </li>
+                            <li className="nav-item"> 
+                                <Link className="nav-link active" aria-current="page" to="/PagesModel1">PagesModel1</Link>  
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <Link className="nav-link active" aria-current="page" to="/PagesModel2">PagesModel2</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
+                                <Link className="nav-link active" aria-current="page" to="/PagesModel3">PagesModel3</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link active" aria-current="page" to="/React">React</Link>
+
                             </li>
                         </ul>
                     </div>

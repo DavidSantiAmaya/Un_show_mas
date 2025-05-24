@@ -151,7 +151,7 @@ function Home() {
                         <p className="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
-                        <div style={{ width: "500px", height: "500px" }}>
+                        <div style={{ width: "200px", height: "500px" }}>
                             <Model3 />
                         </div>
                     </div>

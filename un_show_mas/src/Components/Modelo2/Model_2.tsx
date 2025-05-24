@@ -9,6 +9,11 @@ const Model2 = () => {
   useEffect(() => {
     if (!mountRef.current) return;
 
+    // Limpia el div antes de agregar el canvas
+    while (mountRef.current.firstChild) {
+    mountRef.current.removeChild(mountRef.current.firstChild);
+    }
+
     // Escena, cámara, renderer
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xeeeeee);
@@ -22,7 +27,7 @@ const Model2 = () => {
     camera.position.set(-1, 1.5, 0.5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(500, 250);
+    renderer.setSize(500, 300);
     mountRef.current.appendChild(renderer.domElement);
 
     // Luz
@@ -76,7 +81,7 @@ const Model2 = () => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: "100vw", height: "100vh" }} />;
+  return <div ref={mountRef} style={{ width: "50vw", height: "50vh" }} />;
 };
 
 export default Model2;
