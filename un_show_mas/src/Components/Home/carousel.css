@@ -1,6 +1,6 @@
-/* GLOBAL STYLES
+/* ESTILOS GLOBALES
 -------------------------------------------------- */
-/* Padding below the footer and lighter body text */
+/* Espaciado debajo del pie de página y texto del cuerpo más claro */
 
 body {
   padding-top: 3rem;
@@ -9,34 +9,34 @@ body {
 }
 
 
-/* CUSTOMIZE THE CAROUSEL
+/* PERSONALIZAR EL CARRUSEL
 -------------------------------------------------- */
 
-/* Carousel base class */
+/* Clase base del carrusel */
 .carousel {
   margin-bottom: 4rem;
 }
-/* Since positioning the image, we need to help out the caption */
+/* Como la imagen está posicionada, necesitamos ayudar con el pie de foto */
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
 }
 
-/* Declare heights because of positioning of img element */
+/* Declarar alturas debido a la posición del elemento img */
 .carousel-item {
-  height: 32rem;
+  height: 50rem; /* Cambia este valor para ajustar la altura del carrusel */
 }
 
 
-/* MARKETING CONTENT
+/* CONTENIDO DE MARKETING
 -------------------------------------------------- */
 
-/* Center align the text within the three columns below the carousel */
+/* Centrar el texto dentro de las tres columnas debajo del carrusel */
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-/* rtl:begin:ignore */
+/* rtl:comenzar:ignorar */
 .marketing .col-lg-4 p {
   margin-right: .75rem;
   margin-left: .75rem;
@@ -44,7 +44,7 @@ body {
 /* rtl:end:ignore */
 
 
-/* Featurettes
+/* Características
 ------------------------- */
 
 .featurette-divider {

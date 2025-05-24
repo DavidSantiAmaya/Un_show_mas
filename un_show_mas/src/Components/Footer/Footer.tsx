@@ -1,3 +1,6 @@
+
+import "./Footer.css";
+
 function Footer (){
     return (
 
@@ -5,11 +8,11 @@ function Footer (){
         
         <footer className="container">
             <p className="float-end">
-                <a href="#">Back to top</a>
+                Back to top
             </p>
             <p>
                 &copy; 2017–2025 Company, Inc. &middot;{" "}
-                <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+                <a href="#">Inicio</a>
             </p>
         </footer>
 

@@ -76,7 +76,7 @@ const Model3 = () => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: "100vw", height: "100vh" }} />;
+  return <div ref={mountRef} style={{ width: "26vw", height: "29vh" }} />;
 };
 
 export default Model3;

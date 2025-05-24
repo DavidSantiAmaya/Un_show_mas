@@ -1,0 +1,25 @@
+body {
+    overflow-x: hidden;
+    overflow-y: auto; 
+    background-image: url('fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Botones estilo GDevelop */
+.btn {
+    background: linear-gradient(145deg, #00f2fe, #4facfe);
+    font-size: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease, transform 0.2s cubic-bezier(.4,2,.6,1);
+}
+
+.btn:hover {
+    transform: scale(1.08) rotate(-2deg);
+    filter: brightness(1.1);
+}
+
+
+

@@ -73,7 +73,7 @@ function Home() {
             <div className="container marketing">
                 {/* Three columns of text below the carousel */}
                 <div className="row">
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 animated1">
                         <img
                             src="/Img/Avatar_1.png"
                             alt="Avatar 1"
@@ -84,9 +84,10 @@ function Home() {
                         />
                         <h2 className="fw-normal">Heading</h2>
                         <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
+                        <a className="btn btn-secondary" href="#">View details &raquo;</a>
                     </div>
-                    <div className="col-lg-4">
+                
+                    <div className="col-lg-4 animated2">
                         <img
                             src="/Img/Avatar_2.png"
                             alt="Avatar 1"
@@ -97,9 +98,9 @@ function Home() {
                         />
                         <h2 className="fw-normal">Heading</h2>
                         <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
+                        <a className="btn btn-secondary" href="#">View details &raquo;</a>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 animated3">
                         <img
                             src="/Img/Avatar_3.png"
                             alt="Avatar 1"
@@ -110,7 +111,7 @@ function Home() {
                         />
                         <h2 className="fw-normal">Heading</h2>
                         <p>And lastly this, the third column of representative placeholder content.</p>
-                        <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
+                        <a className="btn btn-secondary" href="#">View details &raquo;</a>
                     </div>
                 </div>
 
@@ -131,25 +132,25 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <hr className="featurette-divider" />
+                
                 <div className="row featurette">
                     <div className="col-md-7 order-md-2">
                         <h2 className="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span className="text-body-secondary">See for yourself.</span></h2>
                         <p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
                     </div>
-                    <div className="col-md-5 order-md-1">
+                    <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
                         <div style={{ width: "500px", height: "500px" }}>
                             <Model2 />
                         </div>
                     </div>
                 </div>
-                <hr className="featurette-divider" />
+                
                 <div className="row featurette">
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal lh-1">And lastly, this one. <span className="text-body-secondary">Checkmate.</span></h2>
                         <p className="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
                     </div>
-                    <div className="col-md-5">
+                    <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
                         <div style={{ width: "500px", height: "500px" }}>
                             <Model3 />
                         </div>
