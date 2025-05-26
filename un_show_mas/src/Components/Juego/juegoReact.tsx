@@ -19,7 +19,6 @@ const GameScene: React.FC = () => {
             0.1,
             1000
         );
-        camera.position.x = 0;
         camera.position.z = 5;
         camera.position.y = 2;
 
@@ -58,13 +57,6 @@ const GameScene: React.FC = () => {
         obstacle.position.set(0, 1, -10);
         scene.add(obstacle);
 
-        const obstacle2 = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({ color: 0xff0000 })
-        );
-        obstacle2.position.set(0, 1, -10);
-        scene.add(obstacle2);
-
         // Variables de salto y movimiento
         let velocityY = 0;
         let isJumping = false;
@@ -75,40 +67,26 @@ const GameScene: React.FC = () => {
         let moveRight = false;
         const moveSpeed = 0.1;
 
-        // Estado de pausa y game over
-        let paused = false;
-        let gameOver = false;
-
-        // Referencias para actualizar desde botones
-        (window as any).__pauseGame = () => { paused = true; };
-        (window as any).__resumeGame = () => { paused = false; animate(); };
-        (window as any).__restartGame = () => { window.location.reload(); };
-
         // Eventos de teclado
         const handleKeyDown = (event: KeyboardEvent) => {
-            if ((event.code === "Space" || event.key === " ") && !isJumping && !paused && !gameOver) {
+            if ((event.code === "Space" || event.key === " ") && !isJumping) {
                 velocityY = jumpStrength;
                 isJumping = true;
             }
-            if ((event.code === "ArrowLeft" || event.key === "a") && !paused && !gameOver) moveLeft = true;
-            if ((event.code === "ArrowLeft" || event.key === "A") && !paused && !gameOver) moveLeft = true;
-            if ((event.code === "ArrowRight" || event.key === "d") && !paused && !gameOver) moveRight = true;
-            if ((event.code === "ArrowRight" || event.key === "D") && !paused && !gameOver) moveRight = true;
-
+            if (event.code === "ArrowLeft" || event.key === "a") moveLeft = true;
+            if (event.code === "ArrowRight" || event.key === "d") moveRight = true;
         };
         const handleKeyUp = (event: KeyboardEvent) => {
             if (event.code === "ArrowLeft" || event.key === "a") moveLeft = false;
-            if (event.code === "ArrowLeft" || event.key === "A") moveLeft = false;
             if (event.code === "ArrowRight" || event.key === "d") moveRight = false;
-            if (event.code === "ArrowRight" || event.key === "D") moveRight = false;
         };
         window.addEventListener("keydown", handleKeyDown);
         window.addEventListener("keyup", handleKeyUp);
 
         // Animación
         let animationId: number;
+        let gameOver = false;
         const animate = () => {
-            if (paused || gameOver) return;
             animationId = requestAnimationFrame(animate);
 
             // Movimiento lateral
@@ -116,7 +94,7 @@ const GameScene: React.FC = () => {
             if (moveRight) cube.position.x += moveSpeed;
 
             // Limitar movimiento lateral
-            cube.position.x = Math.max(-8.5, Math.min(8.5, cube.position.x));
+            cube.position.z = Math.max(-8.5, Math.min(8.5, cube.position.z));
 
             // Gravedad y salto
             if (cube.position.y > groundY || velocityY > 0) {
@@ -130,112 +108,47 @@ const GameScene: React.FC = () => {
             }
 
             // Mover obstáculo hacia el jugador
-            obstacle.position.z += 0.1;
-            if (obstacle.position.z > 8) {
+            obstacle.position.x += 0.1;
+            if (obstacle.position.x > 5) {
                 // Reiniciar obstáculo
-                obstacle.position.z = -10;
-                obstacle.position.x = (Math.random() - 0.3) * 6;
-            }
-
-            // Mover obstáculo hacia el jugador
-            obstacle2.position.z += 0.1;
-            if (obstacle2.position.z > 5) {
-                // Reiniciar obstáculo
-                obstacle2.position.z = -10;
-                obstacle2.position.x = (Math.random() - 0.6) * 6;
+                obstacle.position.x = -10;
+                obstacle.position.x = (Math.random() - 0.5) * 16;
             }
 
             // Detección de colisión simple
             const dx = cube.position.x - obstacle.position.x;
-            const dx2 = cube.position.x - obstacle2.position.x;
             const dy = cube.position.y - obstacle.position.y;
-            const dy2 = cube.position.y - obstacle2.position.y;
             const dz = cube.position.z - obstacle.position.z;
-            const dz2 = cube.position.z - obstacle2.position.z;
-
             if (
                 Math.abs(dx) < 1 &&
                 Math.abs(dy) < 1 &&
                 Math.abs(dz) < 1
             ) {
+                gameOver = true;
+            }
 
-        gameOver = true;
-        // Mostrar botón de reinicio
-        const restartBtn = document.getElementById("restart-btn");
-        if (restartBtn) restartBtn.style.display = "block";
-    }
+            renderer.render(scene, camera);
 
-      if (
-        Math.abs(dx2) < 1 &&
-        Math.abs(dy2) < 1 &&
-        Math.abs(dz2) < 1
-    ) {
-        gameOver = true;
-        // Mostrar botón de reinicio
-        const restartBtn = document.getElementById("restart-btn");
-        if (restartBtn) restartBtn.style.display = "block";
-    }
+            if (gameOver) {
+                alert("¡Game Over!");
+                window.location.reload();
+            }
+        };
+        animate();
 
-    renderer.render(scene, camera);
-};
-animate();
-
-// Limpieza
-return () => {
-    cancelAnimationFrame(animationId);
-    window.removeEventListener("keydown", handleKeyDown);
-    window.removeEventListener("keyup", handleKeyUp);
-    renderer.dispose();
-    while (mount.firstChild) {
-        mount.removeChild(mount.firstChild);
-    }
-    // Limpiar handlers globales
-    delete (window as any).__pauseGame;
-    delete (window as any).__resumeGame;
-    delete (window as any).__restartGame;
-};
-
+        // Limpieza
+        return () => {
+            cancelAnimationFrame(animationId);
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("keyup", handleKeyUp);
+            renderer.dispose();
+            while (mount.firstChild) {
+                mount.removeChild(mount.firstChild);
+            }
+        };
     }, []);
 
-// Handlers para los botones
-const handlePause = () => (window as any).__pauseGame && (window as any).__pauseGame();
-const handleResume = () => (window as any).__resumeGame && (window as any).__resumeGame();
-const handleRestart = () => (window as any).__restartGame && (window as any).__restartGame();
-
-return (
-
-    <div style={{ position: "relative", width: "80vw", height: "100vh" }} ref={mountRef}>
-        <div style={{
-            position: "absolute",
-            top: 20,
-            left: 20,
-            zIndex: 0,
-            display: "flex",
-            gap: "10px"
-        }}>
-
-            <button onClick={handlePause}>Pausar</button>
-            <button onClick={handleResume}>Reanudar</button>
-
-        </div>
-        <button
-            id="restart-btn"
-            style={{
-                display: "none",
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                zIndex: 0,
-                padding: "20px",
-                fontSize: "1.5rem"
-            }}
-            onClick={handleRestart}
-        >
-            Reiniciar
-        </button>
-    </div>
-);
+    return <div ref={mountRef} />;
 };
 
 export default GameScene;
