@@ -26,6 +26,7 @@ const ModelGrande1 = () => {
       const height = window.innerHeight - 300;
       renderer.setSize(width, height);
       renderer.domElement.style.margin = "100px";
+      renderer.domElement.style.marginTop = "50px";
       renderer.domElement.style.borderRadius = "16px";
       renderer.domElement.style.border = "5px solid black";
   

@@ -25,10 +25,10 @@ const Model1 = () => {
       0.1,
       1000
     );
-    camera.position.set(1.5, 1.5, 6);
+    camera.position.set(3, 1.5, 5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(500, 300);
+    renderer.setSize(600, 300);
     mountRef.current.appendChild(renderer.domElement);
     
 

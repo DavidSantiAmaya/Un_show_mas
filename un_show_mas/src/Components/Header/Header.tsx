@@ -16,16 +16,16 @@ function Header (){
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav me-auto mb-2 mb-md-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/Home">Home</Link>
+                                <Link className="nav-link active" aria-current="page" to="/Home">Inicio</Link>
                             </li>
                             <li className="nav-item"> 
-                                <Link className="nav-link active" aria-current="page" to="/PagesModel1">PagesModel1</Link>  
+                                <Link className="nav-link active" aria-current="page" to="/PagesModel1">Mordecai</Link>  
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/PagesModel2">PagesModel2</Link>
+                                <Link className="nav-link active" aria-current="page" to="/PagesModel2">Rigby</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/PagesModel3">PagesModel3</Link>
+                                <Link className="nav-link active" aria-current="page" to="/PagesModel3">Skips</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/React">React</Link>

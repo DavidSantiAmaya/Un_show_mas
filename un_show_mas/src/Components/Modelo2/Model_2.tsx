@@ -27,7 +27,7 @@ const Model2 = () => {
     camera.position.set(-1, 1.5, 0.5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(500, 300);
+    renderer.setSize(600, 300);
     mountRef.current.appendChild(renderer.domElement);
 
     // Luz

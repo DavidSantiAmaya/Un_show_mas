@@ -7,6 +7,9 @@ import Model3 from "../Modelo3/Model_3";
 function Home() {
     return (
         <main>
+
+            {/* CAROUSEL */}
+
             <div id="myCarousel" className="carousel slide mb-6" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -69,6 +72,9 @@ function Home() {
                 </button>
             </div>
 
+
+            {/* TARJETAS */}
+
             {/* Marketing messaging and featurettes */}
             <div className="container marketing">
                 {/* Three columns of text below the carousel */}
@@ -82,9 +88,12 @@ function Home() {
                             height="140"
                             style={{ objectFit: "cover" }}
                         />
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <a className="btn btn-secondary" href="#">View details &raquo;</a>
+                        <h2 className="fw-normal">Mordecai</h2>
+                        <p>Mordecai es el más responsable del dúo central.
+                            Suele tener una actitud relajada, aunque muestra nerviosismo en situaciones sociales o románticas.
+                            A menudo actúa como la voz de la razón, pero también puede caer en la pereza y tomar decisiones impulsivas.
+                            Es más maduro que Rigby, pero no completamente adulto.</p>
+                        <a className="btn btn-secondary" href="/PagesModel1">Ver modelo 3D &raquo;</a>
                     </div>
                 
                     <div className="col-lg-4 animated2">
@@ -96,9 +105,9 @@ function Home() {
                             height="140"
                             style={{ objectFit: "cover" }}
                         />
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-                        <a className="btn btn-secondary" href="#">View details &raquo;</a>
+                        <h2 className="fw-normal">Rigby</h2>
+                        <p>Rigby es inmaduro, impulsivo y muy energético. Es conocido por meterse en problemas y evitar responsabilidades. Aunque puede ser egoísta, tiene un fuerte lazo de amistad con Mordecai y, en el fondo, tiene buenas intenciones. Su comportamiento caótico a menudo inicia los conflictos del episodio.</p>
+                        <a className="btn btn-secondary" href="/PagesModel2">Ver modelo 3D &raquo;</a>
                     </div>
                     <div className="col-lg-4 animated3">
                         <img
@@ -109,13 +118,13 @@ function Home() {
                             height="140"
                             style={{ objectFit: "cover" }}
                         />
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>And lastly this, the third column of representative placeholder content.</p>
-                        <a className="btn btn-secondary" href="#">View details &raquo;</a>
+                        <h2 className="fw-normal">Skips</h2>
+                        <p>Skips es sabio, fuerte y calmado. Siempre tiene una solución (o al menos una pista) para los problemas sobrenaturales que enfrentan en el parque. Actúa como mentor y protector del grupo. Su pasado misterioso y naturaleza inmortal le dan profundidad, y su sentido del deber lo hace confiable y respetado.</p>
+                        <a className="btn btn-secondary" href="/PagesModel3">Ver modelo 3D &raquo;</a>
                     </div>
                 </div>
 
-                {/* Featurettes */}
+                {/* VISTA PREVIA MODELOS 3D */}
                 <hr className="featurette-divider" />
                 <div className="row featurette">
                     <div className="col-md-7">
@@ -139,7 +148,7 @@ function Home() {
                         <p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
-                        <div style={{ width: "500px", height: "500px" }}>
+                        <div style={{ width: "700px", height: "500px" }}>
                             <Model2 />
                         </div>
                     </div>
@@ -151,7 +160,7 @@ function Home() {
                         <p className="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
-                        <div style={{ width: "200px", height: "500px" }}>
+                        <div style={{ width: "500px", height: "500px" }}>
                             <Model3 />
                         </div>
                     </div>
