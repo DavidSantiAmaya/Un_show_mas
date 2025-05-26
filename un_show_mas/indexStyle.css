@@ -20,6 +20,9 @@ body {
     transform: scale(1.08) rotate(-2deg);
     filter: brightness(1.1);
 }
+#root{
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
 
 
