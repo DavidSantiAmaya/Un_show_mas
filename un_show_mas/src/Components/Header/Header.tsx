@@ -27,10 +27,6 @@ function Header (){
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/PagesModel3">Skips</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/React">React</Link>
-
-                            </li>
                         </ul>
                     </div>
                 </div>
