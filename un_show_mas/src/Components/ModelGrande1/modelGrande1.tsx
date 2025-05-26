@@ -173,9 +173,13 @@ const ModelGrande1 = () => {
         <button onClick={handlePlaySound} disabled={isPlaying}>
           ▶️ Play
         </button>
+
         <button onClick={handlePauseSound} disabled={!isPlaying}>
           ⏸️ Pause
         </button>
+
+        
+
       </div>
     </div>
   );
