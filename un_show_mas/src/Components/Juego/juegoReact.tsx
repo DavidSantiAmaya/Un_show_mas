@@ -94,7 +94,7 @@ const GameScene: React.FC = () => {
             if (moveRight) cube.position.x += moveSpeed;
 
             // Limitar movimiento lateral
-            cube.position.z = Math.max(-8.5, Math.min(8.5, cube.position.z));
+            cube.position.x = Math.max(-8.5, Math.min(8.5, cube.position.x));
 
             // Gravedad y salto
             if (cube.position.y > groundY || velocityY > 0) {
@@ -109,10 +109,9 @@ const GameScene: React.FC = () => {
 
             // Mover obstáculo hacia el jugador
             obstacle.position.x += 0.1;
-            if (obstacle.position.x > 5) {
+            if (obstacle.position.x > 8) {
                 // Reiniciar obstáculo
                 obstacle.position.x = -10;
-                obstacle.position.x = (Math.random() - 0.5) * 16;
             }
 
             // Detección de colisión simple
