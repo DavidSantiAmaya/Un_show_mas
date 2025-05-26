@@ -19,6 +19,7 @@ const GameScene: React.FC = () => {
             0.1,
             1000
         );
+        camera.position.x = 0;
         camera.position.z = 5;
         camera.position.y = 2;
 
@@ -61,7 +62,7 @@ const GameScene: React.FC = () => {
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({ color: 0xff0000 })
         );
-        obstacle.position.set(0, 1, -10);
+        obstacle2.position.set(0, 1, -10);
         scene.add(obstacle2);
 
         // Variables de salto y movimiento
@@ -90,11 +91,16 @@ const GameScene: React.FC = () => {
                 isJumping = true;
             }
             if ((event.code === "ArrowLeft" || event.key === "a") && !paused && !gameOver) moveLeft = true;
+            if ((event.code === "ArrowLeft" || event.key === "A") && !paused && !gameOver) moveLeft = true;
             if ((event.code === "ArrowRight" || event.key === "d") && !paused && !gameOver) moveRight = true;
+            if ((event.code === "ArrowRight" || event.key === "D") && !paused && !gameOver) moveRight = true;
+
         };
         const handleKeyUp = (event: KeyboardEvent) => {
             if (event.code === "ArrowLeft" || event.key === "a") moveLeft = false;
+            if (event.code === "ArrowLeft" || event.key === "A") moveLeft = false;
             if (event.code === "ArrowRight" || event.key === "d") moveRight = false;
+            if (event.code === "ArrowRight" || event.key === "D") moveRight = false;
         };
         window.addEventListener("keydown", handleKeyDown);
         window.addEventListener("keyup", handleKeyUp);
@@ -125,13 +131,13 @@ const GameScene: React.FC = () => {
 
             // Mover obstáculo hacia el jugador
             obstacle.position.z += 0.1;
-            if (obstacle.position.z > 5) {
+            if (obstacle.position.z > 8) {
                 // Reiniciar obstáculo
                 obstacle.position.z = -10;
-                obstacle.position.x = (Math.random() - 0.6) * 6;
+                obstacle.position.x = (Math.random() - 0.3) * 6;
             }
 
-               // Mover obstáculo hacia el jugador
+            // Mover obstáculo hacia el jugador
             obstacle2.position.z += 0.1;
             if (obstacle2.position.z > 5) {
                 // Reiniciar obstáculo
@@ -145,90 +151,91 @@ const GameScene: React.FC = () => {
             const dy = cube.position.y - obstacle.position.y;
             const dy2 = cube.position.y - obstacle2.position.y;
             const dz = cube.position.z - obstacle.position.z;
-            const dz2 = cube.position.y - obstacle2.position.y;
+            const dz2 = cube.position.z - obstacle2.position.z;
 
             if (
                 Math.abs(dx) < 1 &&
                 Math.abs(dy) < 1 &&
                 Math.abs(dz) < 1
             ) {
-                gameOver = true;
-                // Mostrar botón de reinicio
-                const restartBtn = document.getElementById("restart-btn");
-                if (restartBtn) restartBtn.style.display = "block";
-            }
 
-              if (
-                Math.abs(dx2) < 1 &&
-                Math.abs(dy2) < 1 &&
-                Math.abs(dz2) < 1
-            ) {
-                gameOver = true;
-                // Mostrar botón de reinicio
-                const restartBtn = document.getElementById("restart-btn");
-                if (restartBtn) restartBtn.style.display = "block";
-            }
+        gameOver = true;
+        // Mostrar botón de reinicio
+        const restartBtn = document.getElementById("restart-btn");
+        if (restartBtn) restartBtn.style.display = "block";
+    }
 
-            renderer.render(scene, camera);
-        };
-        animate();
+      if (
+        Math.abs(dx2) < 1 &&
+        Math.abs(dy2) < 1 &&
+        Math.abs(dz2) < 1
+    ) {
+        gameOver = true;
+        // Mostrar botón de reinicio
+        const restartBtn = document.getElementById("restart-btn");
+        if (restartBtn) restartBtn.style.display = "block";
+    }
 
-        // Limpieza
-        return () => {
-            cancelAnimationFrame(animationId);
-            window.removeEventListener("keydown", handleKeyDown);
-            window.removeEventListener("keyup", handleKeyUp);
-            renderer.dispose();
-            while (mount.firstChild) {
-                mount.removeChild(mount.firstChild);
-            }
-            // Limpiar handlers globales
-            delete (window as any).__pauseGame;
-            delete (window as any).__resumeGame;
-            delete (window as any).__restartGame;
-        };
+    renderer.render(scene, camera);
+};
+animate();
+
+// Limpieza
+return () => {
+    cancelAnimationFrame(animationId);
+    window.removeEventListener("keydown", handleKeyDown);
+    window.removeEventListener("keyup", handleKeyUp);
+    renderer.dispose();
+    while (mount.firstChild) {
+        mount.removeChild(mount.firstChild);
+    }
+    // Limpiar handlers globales
+    delete (window as any).__pauseGame;
+    delete (window as any).__resumeGame;
+    delete (window as any).__restartGame;
+};
 
     }, []);
 
-    // Handlers para los botones
-    const handlePause = () => (window as any).__pauseGame && (window as any).__pauseGame();
-    const handleResume = () => (window as any).__resumeGame && (window as any).__resumeGame();
-    const handleRestart = () => (window as any).__restartGame && (window as any).__restartGame();
+// Handlers para los botones
+const handlePause = () => (window as any).__pauseGame && (window as any).__pauseGame();
+const handleResume = () => (window as any).__resumeGame && (window as any).__resumeGame();
+const handleRestart = () => (window as any).__restartGame && (window as any).__restartGame();
 
-    return (
+return (
 
-        <div style={{ position: "relative", width: "80vw", height: "100vh" }} ref={mountRef}>
-            <div style={{
-                position: "absolute",
-                top: 20,
-                left: 20,
-                zIndex: 0,
-                display: "flex",
-                gap: "10px"
-            }}>
+    <div style={{ position: "relative", width: "80vw", height: "100vh" }} ref={mountRef}>
+        <div style={{
+            position: "absolute",
+            top: 20,
+            left: 20,
+            zIndex: 0,
+            display: "flex",
+            gap: "10px"
+        }}>
 
-                <button onClick={handlePause}>Pausar</button>
-                <button onClick={handleResume}>Reanudar</button>
+            <button onClick={handlePause}>Pausar</button>
+            <button onClick={handleResume}>Reanudar</button>
 
-            </div>
-            <button
-                id="restart-btn"
-                style={{
-                    display: "none",
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 0,
-                    padding: "20px",
-                    fontSize: "1.5rem"
-                }}
-                onClick={handleRestart}
-            >
-                Reiniciar
-            </button>
         </div>
-    );
+        <button
+            id="restart-btn"
+            style={{
+                display: "none",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                zIndex: 0,
+                padding: "20px",
+                fontSize: "1.5rem"
+            }}
+            onClick={handleRestart}
+        >
+            Reiniciar
+        </button>
+    </div>
+);
 };
 
 export default GameScene;
