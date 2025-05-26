@@ -129,10 +129,11 @@ function Home() {
                 <div className="row featurette">
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal lh-1">
-                            First featurette heading. <span className="text-body-secondary">It’ll blow your mind.</span>
+                            "Mapache, <span className="text-body-secondary">que porqueria"</span>
                         </h2>
                         <p className="lead">
-                            Some great placeholder content for the first featurette here. Imagine some exciting prose here.
+                            Prefiero hacer el trabajo de musculoso que salir con esa g0rd4 <br />
+                            - Mordecai
                         </p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
@@ -144,8 +145,10 @@ function Home() {
                 
                 <div className="row featurette">
                     <div className="col-md-7 order-md-2">
-                        <h2 className="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span className="text-body-secondary">See for yourself.</span></h2>
-                        <p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                        <h2 className="featurette-heading fw-normal lh-1">"Si que si, <span className="text-body-secondary">Oooooohh!!!"</span></h2>
+                        <p className="lead">Amigo, deberias salir con ella <br /> 
+                            - Rigby
+                        </p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
                         <div style={{ width: "700px", height: "500px" }}>
@@ -156,8 +159,10 @@ function Home() {
                 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal lh-1">And lastly, this one. <span className="text-body-secondary">Checkmate.</span></h2>
-                        <p className="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                        <h2 className="featurette-heading fw-normal lh-1">(En silencio, <span className="text-body-secondary">con sabiduría)</span></h2>
+                        <p className="lead"> Saltar es mi unica forma de recordarla siempre <br />
+                            - Walks "Skips"
+                        </p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
                         <div style={{ width: "500px", height: "500px" }}>
