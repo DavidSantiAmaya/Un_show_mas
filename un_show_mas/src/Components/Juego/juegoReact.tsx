@@ -33,7 +33,7 @@ const GameScene: React.FC = () => {
         light.position.set(5, 10, 7.5);
         scene.add(light);
 
-        // Cubo
+        // Cubo (jugador)
         const cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({ color: 0x00ff00 })
@@ -49,38 +49,94 @@ const GameScene: React.FC = () => {
         floor.position.y = -0.5;
         scene.add(floor);
 
-        // Variables de salto
+        // Obstáculo
+        const obstacle = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshStandardMaterial({ color: 0xff0000 })
+        );
+        obstacle.position.set(0, 1, -10);
+        scene.add(obstacle);
+
+        // Variables de salto y movimiento
         let velocityY = 0;
         let isJumping = false;
         const gravity = -0.01;
         const jumpStrength = 0.2;
         const groundY = 1;
+        let moveLeft = false;
+        let moveRight = false;
+        const moveSpeed = 0.1;
 
-        // Evento de teclado
+        // Estado de pausa y game over
+        let paused = false;
+        let gameOver = false;
+
+        // Referencias para actualizar desde botones
+        (window as any).__pauseGame = () => { paused = true; };
+        (window as any).__resumeGame = () => { paused = false; animate(); };
+        (window as any).__restartGame = () => { window.location.reload(); };
+
+        // Eventos de teclado
         const handleKeyDown = (event: KeyboardEvent) => {
-            if ((event.code === "Space" || event.key === " ") && !isJumping) {
+            if ((event.code === "Space" || event.key === " ") && !isJumping && !paused && !gameOver) {
                 velocityY = jumpStrength;
                 isJumping = true;
             }
+            if ((event.code === "ArrowLeft" || event.key === "a") && !paused && !gameOver) moveLeft = true;
+            if ((event.code === "ArrowRight" || event.key === "d") && !paused && !gameOver) moveRight = true;
+        };
+        const handleKeyUp = (event: KeyboardEvent) => {
+            if (event.code === "ArrowLeft" || event.key === "a") moveLeft = false;
+            if (event.code === "ArrowRight" || event.key === "d") moveRight = false;
         };
         window.addEventListener("keydown", handleKeyDown);
+        window.addEventListener("keyup", handleKeyUp);
 
         // Animación
         let animationId: number;
         const animate = () => {
+            if (paused || gameOver) return;
             animationId = requestAnimationFrame(animate);
 
-            // Gravedad
+            // Movimiento lateral
+            if (moveLeft) cube.position.x -= moveSpeed;
+            if (moveRight) cube.position.x += moveSpeed;
+
+            // Limitar movimiento lateral
+            cube.position.x = Math.max(-8.5, Math.min(8.5, cube.position.x));
+
+            // Gravedad y salto
             if (cube.position.y > groundY || velocityY > 0) {
                 velocityY += gravity;
                 cube.position.y += velocityY;
-
-                // Al tocar el suelo
                 if (cube.position.y <= groundY) {
                     cube.position.y = groundY;
                     velocityY = 0;
                     isJumping = false;
                 }
+            }
+
+            // Mover obstáculo hacia el jugador
+            obstacle.position.z += 0.1;
+            if (obstacle.position.z > 5) {
+                // Reiniciar obstáculo
+                obstacle.position.z = -10;
+                obstacle.position.x = (Math.random() - 0.5) * 16;
+            }
+
+            // Detección de colisión simple
+            const dx = cube.position.x - obstacle.position.x;
+            const dy = cube.position.y - obstacle.position.y;
+            const dz = cube.position.z - obstacle.position.z;
+            if (
+                Math.abs(dx) < 1 &&
+                Math.abs(dy) < 1 &&
+                Math.abs(dz) < 1
+            ) {
+                gameOver = true;
+                // Mostrar botón de reinicio
+                const restartBtn = document.getElementById("restart-btn");
+                if (restartBtn) restartBtn.style.display = "block";
             }
 
             renderer.render(scene, camera);
@@ -91,14 +147,55 @@ const GameScene: React.FC = () => {
         return () => {
             cancelAnimationFrame(animationId);
             window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("keyup", handleKeyUp);
             renderer.dispose();
             while (mount.firstChild) {
                 mount.removeChild(mount.firstChild);
             }
+            // Limpiar handlers globales
+            delete (window as any).__pauseGame;
+            delete (window as any).__resumeGame;
+            delete (window as any).__restartGame;
         };
+
     }, []);
 
-    return <div ref={mountRef} />;
+    // Handlers para los botones
+    const handlePause = () => (window as any).__pauseGame && (window as any).__pauseGame();
+    const handleResume = () => (window as any).__resumeGame && (window as any).__resumeGame();
+    const handleRestart = () => (window as any).__restartGame && (window as any).__restartGame();
+
+    return (
+        <div style={{ position: "relative", width: "100vw", height: "100vh" }} ref={mountRef}>
+            <div style={{
+                position: "relative",
+                top: 20,
+                left: 20,
+                zIndex: 10,
+                display: "flex",
+                gap: "10px"
+            }}>
+                <button onClick={handlePause}>Pausar</button>
+                <button onClick={handleResume}>Reanudar</button>
+            </div>
+            <button
+                id="restart-btn"
+                style={{
+                    display: "none",
+                    position: "relative",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 20,
+                    padding: "20px",
+                    fontSize: "1.5rem"
+                }}
+                onClick={handleRestart}
+            >
+                Reiniciar
+            </button>
+        </div>
+    );
 };
 
 export default GameScene;
