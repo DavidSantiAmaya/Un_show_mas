@@ -84,6 +84,7 @@ const ModelGrande1 = () => {
         const model = gltf.scene;
         model.scale.set(1, 1, 1);
         scene.add(model);
+        model.position.set(0, -1, 0); // Ajusta la posición del modelo
       },
       undefined,
       (error) => {
