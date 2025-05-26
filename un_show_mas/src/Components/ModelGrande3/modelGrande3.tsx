@@ -91,10 +91,45 @@ const ModelGrande3 = () => {
       }
     );
 
+
+    // PARTICULAS flotantes
+    const particleCount = 300;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 20; // rango -10 a 10
+    }
+
+    particlesGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+    //PROPIEDADES Particulas
+    const particlesMaterial = new THREE.PointsMaterial({
+      color: 0x000000,
+      size: 0.1,
+      transparent: true,
+      opacity: 0.7,
+    });
+    //Añadirlos a escena
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
+
+
     // Animación
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update();
+
+      // Animacion Partículas flotando (simple movimiento)
+      const pos = particles.geometry.attributes.position as THREE.BufferAttribute;
+      for (let i = 1; i < pos.count; i += 3) {
+        pos.array[i] += 0.002; // eje Y
+        if (pos.array[i] > 10) pos.array[i] = -10;
+      }
+      pos.needsUpdate = true;
+
       renderer.render(scene, camera);
     };
 
@@ -115,7 +150,7 @@ const ModelGrande3 = () => {
     }
   };
 
-    const handlePauseSound = () => {
+  const handlePauseSound = () => {
     if (soundRef && soundRef.isPlaying) {
       soundRef.pause();
       setIsPlaying(false);
@@ -143,7 +178,7 @@ const ModelGrande3 = () => {
       </div>
     </div>
   );
-  
+
 };
 
 export default ModelGrande3;
