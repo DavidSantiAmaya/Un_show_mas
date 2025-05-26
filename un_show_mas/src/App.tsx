@@ -18,7 +18,7 @@ function App() {
         <Header />
         <Routes>
 
-          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/PagesModel1" element={<PagesModel1 />} />
           <Route path="/PagesModel2" element={<PagesModel2 />} />
           <Route path="/PagesModel3" element={<PagesModel3 />} />
