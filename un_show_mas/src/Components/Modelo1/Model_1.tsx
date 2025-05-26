@@ -28,6 +28,7 @@ const Model1 = () => {
     camera.position.set(3, 1.5, 5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.domElement.style.borderRadius = "16px";
     renderer.setSize(600, 300);
     mountRef.current.appendChild(renderer.domElement);
     
@@ -60,6 +61,7 @@ const Model1 = () => {
         const model = gltf.scene;
         model.scale.set(1, 1, 1);
         scene.add(model);
+        model.position.set(0, -1, 0); // Ajusta la posición del modelo
       },
       undefined,
       (error) => {
@@ -83,7 +85,7 @@ const Model1 = () => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: "100vw", height: "100vh" }} />;
+  return <div ref={mountRef} style={{ width: "50vw", height: "50vh" }} />;
 };
 
 export default Model1;

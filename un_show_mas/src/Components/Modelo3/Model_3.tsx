@@ -27,6 +27,7 @@ const Model3 = () => {
     camera.position.set(1.5, 1.5, 2.6);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.domElement.style.borderRadius = "16px";
     renderer.setSize(600, 300);
     mountRef.current.appendChild(renderer.domElement);
 
@@ -55,6 +56,7 @@ const Model3 = () => {
         const model = gltf.scene;
         model.scale.set(1, 1, 1);
         scene.add(model);
+        model.position.set(0, -1, 0); // Ajusta la posición del modelo
       },
       undefined,
       (error) => {
