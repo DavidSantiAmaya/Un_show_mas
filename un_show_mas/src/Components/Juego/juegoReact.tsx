@@ -57,6 +57,13 @@ const GameScene: React.FC = () => {
         obstacle.position.set(0, 1, -10);
         scene.add(obstacle);
 
+        const obstacle2 = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshStandardMaterial({ color: 0xff0000 })
+        );
+        obstacle.position.set(0, 1, -10);
+        scene.add(obstacle2);
+
         // Variables de salto y movimiento
         let velocityY = 0;
         let isJumping = false;
@@ -121,17 +128,40 @@ const GameScene: React.FC = () => {
             if (obstacle.position.z > 5) {
                 // Reiniciar obstáculo
                 obstacle.position.z = -10;
-                obstacle.position.x = (Math.random() - 0.5) * 16;
+                obstacle.position.x = (Math.random() - 0.6) * 6;
+            }
+
+               // Mover obstáculo hacia el jugador
+            obstacle2.position.z += 0.1;
+            if (obstacle2.position.z > 5) {
+                // Reiniciar obstáculo
+                obstacle2.position.z = -10;
+                obstacle2.position.x = (Math.random() - 0.6) * 6;
             }
 
             // Detección de colisión simple
             const dx = cube.position.x - obstacle.position.x;
+            const dx2 = cube.position.x - obstacle2.position.x;
             const dy = cube.position.y - obstacle.position.y;
+            const dy2 = cube.position.y - obstacle2.position.y;
             const dz = cube.position.z - obstacle.position.z;
+            const dz2 = cube.position.y - obstacle2.position.y;
+
             if (
                 Math.abs(dx) < 1 &&
                 Math.abs(dy) < 1 &&
                 Math.abs(dz) < 1
+            ) {
+                gameOver = true;
+                // Mostrar botón de reinicio
+                const restartBtn = document.getElementById("restart-btn");
+                if (restartBtn) restartBtn.style.display = "block";
+            }
+
+              if (
+                Math.abs(dx2) < 1 &&
+                Math.abs(dy2) < 1 &&
+                Math.abs(dz2) < 1
             ) {
                 gameOver = true;
                 // Mostrar botón de reinicio
@@ -166,27 +196,30 @@ const GameScene: React.FC = () => {
     const handleRestart = () => (window as any).__restartGame && (window as any).__restartGame();
 
     return (
-        <div style={{ position: "relative", width: "100vw", height: "100vh" }} ref={mountRef}>
+
+        <div style={{ position: "relative", width: "80vw", height: "100vh" }} ref={mountRef}>
             <div style={{
-                position: "relative",
+                position: "absolute",
                 top: 20,
                 left: 20,
-                zIndex: 10,
+                zIndex: 0,
                 display: "flex",
                 gap: "10px"
             }}>
+
                 <button onClick={handlePause}>Pausar</button>
                 <button onClick={handleResume}>Reanudar</button>
+
             </div>
             <button
                 id="restart-btn"
                 style={{
                     display: "none",
-                    position: "relative",
+                    position: "absolute",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    zIndex: 20,
+                    zIndex: 0,
                     padding: "20px",
                     fontSize: "1.5rem"
                 }}
