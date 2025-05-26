@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 const ModelGrande3 = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
+  const [soundRef, setSoundRef] = useState<THREE.Audio | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -19,23 +21,19 @@ const ModelGrande3 = () => {
       0.1,
       1000
     );
-    camera.position.set(1.5, 1.5, 6);
+    camera.position.set(1.5, 1.5, 3);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    const width = window.innerWidth - 300;
-    const height = window.innerHeight - 300;
+    const width = window.innerWidth - 80;
+    const height = window.innerHeight - 180;
     renderer.setSize(width, height);
-    renderer.domElement.style.margin = "100px";
-      renderer.domElement.style.marginTop = "50px";
     renderer.domElement.style.borderRadius = "16px";
-    renderer.domElement.style.border = "5px solid black";
 
-    
     // Evita agregar el canvas dos veces
     if (mountRef.current.childElementCount === 0) {
-    mountRef.current.appendChild(renderer.domElement);
+      mountRef.current.appendChild(renderer.domElement);
 
-  }
+    }
 
     // Luz
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -56,6 +54,27 @@ const ModelGrande3 = () => {
     controls.maxPolarAngle = Math.PI / 2; // 90 grados
     controls.minAzimuthAngle = -Math.PI / 4; // -45°
     controls.maxAzimuthAngle = Math.PI / 4;  // 45°
+
+
+    // create an AudioListener and add it to the camera
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    // create a global audio source
+    const sound = new THREE.Audio(listener);
+
+    // load a sound and set it as the Audio object's buffer
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load(
+      "/music/gorillaz.mp3",
+      function (buffer) {
+        sound.setBuffer(buffer);
+        sound.setLoop(true);
+        sound.setVolume(0.5);
+        setSoundRef(sound);
+      }
+    );
+
 
     // Cargar modelo GLB/GLTF
     const loader = new GLTFLoader();
@@ -88,7 +107,43 @@ const ModelGrande3 = () => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: "80vw", height: "40vh" }} />;
+  // Handlers (Controladores)
+  const handlePlaySound = () => {
+    if (soundRef && !soundRef.isPlaying) {
+      soundRef.play();
+      setIsPlaying(true);
+    }
+  };
+
+    const handlePauseSound = () => {
+    if (soundRef && soundRef.isPlaying) {
+      soundRef.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  return (
+    <div>
+      <div ref={mountRef} style={{ width: "80vw", height: "40vh" }} />
+      <div
+        style={{
+          position: "relative",
+          top: 300,
+          left: 20,
+          display: "flex",
+          gap: "10px",
+        }}
+      >
+        <button onClick={handlePlaySound} disabled={isPlaying}>
+          ▶️ Play
+        </button>
+        <button onClick={handlePauseSound} disabled={!isPlaying}>
+          ⏸️ Pause
+        </button>
+      </div>
+    </div>
+  );
+  
 };
 
 export default ModelGrande3;

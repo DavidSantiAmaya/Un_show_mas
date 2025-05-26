@@ -6,7 +6,7 @@ function pagesModel2() {
     return (
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style={{ minHeight: "100vh", background: "none" }}>
             <main className="px-3">
-                <h1 className="pt-4">RIGBY</h1>
+                <h1 className="py-4">RIGBY</h1>
                 <ModelGrande2 />
             </main>
         </div>
