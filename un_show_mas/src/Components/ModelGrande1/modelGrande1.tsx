@@ -76,6 +76,13 @@ const ModelGrande1 = () => {
       }
     );
 
+    // detener sonido al desmontar
+    if (soundRef && !soundRef.isPlaying) {
+      soundRef.stop();
+      soundRef.disconnect();
+      setSoundRef(null);
+    }
+
     // Cargar modelo GLB/GLTF
     const loader = new GLTFLoader();
     loader.load(
@@ -136,53 +143,107 @@ const ModelGrande1 = () => {
 
     animate();
 
-    // Cleanup
-    return () => {
-      renderer.dispose();
-      mountRef.current?.removeChild(renderer.domElement);
-    };
-  }, []);
 
-  // Handlers (Controladores)
-  const handlePlaySound = () => {
-    if (soundRef && !soundRef.isPlaying) {
-      soundRef.play();
-      setIsPlaying(true);
-    }
-  };
+  //   // AUDIO
+  //   const listener = new THREE.AudioListener();
+  //   camera.add(listener);
 
-  const handlePauseSound = () => {
+  //   const sound = new THREE.Audio(listener);
+  //   soundRef.current = sound;
+
+  //   const audioLoader = new THREE.AudioLoader();
+  //   audioLoader.load(
+  //     "/music/dcity.mp3",
+  //     function (buffer) {
+  //       sound.setBuffer(buffer);
+  //       sound.setLoop(true);
+  //       sound.setVolume(0.5);
+  //     }
+  //   );
+
+  //   // ... (resto igual)
+
+  //   // Cleanup
+  //   return () => {
+  //     if (soundRef.current) {
+  //       soundRef.current.stop();
+  //       soundRef.current.disconnect();
+  //     }
+  //     renderer.dispose();
+  //     mountRef.current?.removeChild(renderer.domElement);
+  //   };
+
+  // }, []);
+
+  // // Handlers
+  // const handlePlaySound = () => {
+  //   if (soundRef.current && !soundRef.current.isPlaying) {
+  //     soundRef.current.play();
+  //     setIsPlaying(true);
+  //   }
+  // };
+
+  // const handlePauseSound = () => {
+  //   if (soundRef.current && soundRef.current.isPlaying) {
+  //     soundRef.current.pause();
+  //     setIsPlaying(false);
+  //   }
+  // };
+
+
+
+  // Cleanup
+  return () => {
     if (soundRef && soundRef.isPlaying) {
-      soundRef.pause();
-      setIsPlaying(false);
+      soundRef.stop();
+      soundRef.disconnect();
+      setSoundRef(null);
     }
+
+    renderer.dispose();
+    mountRef.current?.removeChild(renderer.domElement);
   };
 
-  return (
-    <div>
-      <div ref={mountRef} style={{ width: "80vw", height: "40vh" }} />
-      <div
-        style={{
-          position: "relative",
-          top: 300,
-          left: 20,
-          display: "flex",
-          gap: "10px",
-        }}
-      >
-        <button onClick={handlePlaySound} disabled={isPlaying}>
-          ▶️ Play
-        </button>
+}, []);
 
-        <button onClick={handlePauseSound} disabled={!isPlaying}>
-          ⏸️ Pause
-        </button>
+// Handlers (Controladores)
+const handlePlaySound = () => {
+  if (soundRef && !soundRef.isPlaying) {
+    soundRef.play();
+    setIsPlaying(true);
+  }
+};
 
-        
+const handlePauseSound = () => {
+  if (soundRef && soundRef.isPlaying) {
+    soundRef.pause();
+    setIsPlaying(false);
+  }
+};
 
-      </div>
+
+return (
+  <div>
+    <div ref={mountRef} style={{ width: "80vw", height: "40vh" }} />
+    <div
+      style={{
+        position: "relative",
+        top: 300,
+        left: 20,
+        display: "flex",
+        gap: "10px",
+      }}
+    >
+      <button onClick={handlePlaySound} disabled={isPlaying}>
+        ▶️ Play
+      </button>
+
+      <button onClick={handlePauseSound} disabled={!isPlaying}>
+        ⏸️ Pause
+      </button>
     </div>
-  );
+  </div>
+);
 };
 
 export default ModelGrande1;
