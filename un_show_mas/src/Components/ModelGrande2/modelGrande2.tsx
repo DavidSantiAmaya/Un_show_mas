@@ -16,7 +16,7 @@ const ModelGrande2 = () => {
     scene.background = new THREE.Color(0xeeeeee);
 
     const camera = new THREE.PerspectiveCamera(
-      70,
+      75,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
@@ -66,7 +66,7 @@ const ModelGrande2 = () => {
     // load a sound and set it as the Audio object's buffer
     const audioLoader = new THREE.AudioLoader();
     audioLoader.load(
-      "/music/screen.mp3",
+      "/music/Rigby.mp3",
       function (buffer) {
         sound.setBuffer(buffer);
         sound.setLoop(true);
@@ -85,6 +85,26 @@ const ModelGrande2 = () => {
         model.scale.set(1, 1, 1);
         scene.add(model);
         model.position.set(0, -1, 0); // Ajusta la posición del modelo
+
+        // === Agrega el cilindro debajo del modelo ===
+        const radiusTop = 1;
+        const radiusBottom = 1;
+        const height = 0.20; // poca altura
+        const radialSegments = 32;
+        const cylinderGeometry = new THREE.CylinderGeometry(
+          radiusTop,
+          radiusBottom,
+          height,
+          radialSegments
+        );
+        const cylinderMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffffff,      // Blanco
+          roughness: 0.2,       // Superficie lisa
+        });
+        const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+        cylinder.position.set(0, -1 - height / 2, 0); // justo debajo del modelo
+        scene.add(cylinder);
+        // === Fin cilindro ===
       },
       undefined,
       (error) => {

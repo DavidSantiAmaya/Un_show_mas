@@ -26,8 +26,12 @@ function Home() {
                         />
                         <div className="container">
                             <div className="carousel-caption text-start">
-                                <h1>Example headline.</h1>
-                                <p className="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
+                                <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
+                                    <h1 style={{ color: "#fff" }}>Bienvenido a Un Show Más 3D</h1>
+                                    <p className="opacity-95" style={{ color: "#ddd" }}>
+                                        Explora modelos 3D de tus personajes favoritos, descubre curiosidades y revive los mejores momentos de la serie. ¡Disfruta la experiencia interactiva en nuestra página web!
+                                    </p>
+                                </div>
                                 
                             </div>
                         </div>
@@ -41,9 +45,10 @@ function Home() {
                         />
                         <div className="container">
                             <div className="carousel-caption">
-                                <h1>Another example headline.</h1>
-                                <p>Some representative placeholder content for the second slide of the carousel.</p>
-                                
+                                <h1 style={{ color: "#fff" }}>Descubre el mundo de Un Show Más</h1>
+                                <p className="opacity-95" style={{ color: "#ddd" }}>
+                                    Sumérgete en la diversión, explora los modelos 3D y conoce datos curiosos de tus personajes favoritos. ¡Vive la experiencia única que solo Un Show Más puede ofrecer!
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -56,8 +61,12 @@ function Home() {
                         />
                         <div className="container">
                             <div className="carousel-caption text-end">
-                                <h1>One more for good measure.</h1>
-                                <p>Some representative placeholder content for the third slide of this carousel.</p>
+                                <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
+                                    <h1 style={{ color: "#fff" }}>¡Explora y comparte!</h1>
+                                    <p style={{ color: "#ddd" }}>
+                                        Comparte tus momentos favoritos y descubre más secretos de Un Show Más. ¡La aventura continúa en cada clic!
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -129,10 +138,10 @@ function Home() {
                 <div className="row featurette">
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal lh-1">
-                            "Mapache, <span className="text-body-secondary">que porqueria"</span>
+                            "¡Mapache, <span className="text-body-secondary">¡eres un idiota!"</span>
                         </h2>
                         <p className="lead">
-                            Prefiero hacer el trabajo de musculoso que salir con esa g0rd4 <br />
+                            ¡Siempre arruinas todo, Rigby!<br />
                             - Mordecai
                         </p>
                     </div>
@@ -145,8 +154,11 @@ function Home() {
                 
                 <div className="row featurette">
                     <div className="col-md-7 order-md-2">
-                        <h2 className="featurette-heading fw-normal lh-1">"Si que si, <span className="text-body-secondary">Oooooohh!!!"</span></h2>
-                        <p className="lead">Amigo, deberias salir con ella <br /> 
+                        <h2 className="featurette-heading fw-normal lh-1">
+                            "¡Aló, <span className="text-body-secondary">¿quién quiere pizzaaa?!?"</span>
+                        </h2>
+                        <p className="lead">
+                            Esto va a estar demasiado épico, bro<br />
                             - Rigby
                         </p>
                     </div>
@@ -159,9 +171,12 @@ function Home() {
                 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal lh-1">(En silencio, <span className="text-body-secondary">con sabiduría)</span></h2>
-                        <p className="lead"> Saltar es mi unica forma de recordarla siempre <br />
-                            - Walks "Skips"
+                        <h2 className="featurette-heading fw-normal lh-1">
+                            "No es el momento de hablar, <span className="text-body-secondary">es el momento de actuar"</span>
+                        </h2>
+                        <p className="lead">
+                            Lo he visto muchas veces. Y nunca termina bien...<br />
+                            - Skips
                         </p>
                     </div>
                     <div className="col-md-5 d-flex align-items-center justify-content-center" style={{ minHeight: "500px" }}>
