@@ -67,7 +67,7 @@ const ModelGrande1 = () => {
     // load a sound and set it as the Audio object's buffer
     const audioLoader = new THREE.AudioLoader();
     audioLoader.load(
-      "/music/dcity.mp3",
+      "/music/Mordecai.mp3",
       function (buffer) {
         sound.setBuffer(buffer);
         sound.setLoop(true);
@@ -79,12 +79,32 @@ const ModelGrande1 = () => {
     // Cargar modelo GLB/GLTF
     const loader = new GLTFLoader();
     loader.load(
-      "/assetsModel/mordecai_fusionfall_heroes.glb", // asegúrate de que la ruta sea correcta
+      "/assetsModel/mordecai_fusionfall_heroes.glb",
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(1, 1, 1);
         scene.add(model);
         model.position.set(0, -1, 0); // Ajusta la posición del modelo
+
+        // === Agrega el cilindro debajo del modelo ===
+        const radiusTop = 2;
+        const radiusBottom = 2;
+        const height = 0.3; // poca altura
+        const radialSegments = 32;
+        const cylinderGeometry = new THREE.CylinderGeometry(
+          radiusTop,
+          radiusBottom,
+          height,
+          radialSegments
+        );
+        const cylinderMaterial = new THREE.MeshStandardMaterial({
+          color: 0xe0e0e0,      // Plateado
+          roughness: 0.2,       // Superficie lisa
+        });
+        const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+        cylinder.position.set(0, -1 - height / 2, 0); // justo debajo del modelo
+        scene.add(cylinder);
+        // === Fin cilindro ===
       },
       undefined,
       (error) => {
