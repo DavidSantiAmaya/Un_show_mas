@@ -184,7 +184,7 @@ const ModelGrande3 = () => {
       <div
         style={{
           position: "relative",
-          top: 300,
+          top: 200,
           left: 20,
           display: "flex",
           gap: "10px",
