@@ -6,12 +6,13 @@ function pagesModel1() {
     return (
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style={{ minHeight: "100vh", background: "none" }}>
             <main className="px-3">
+                 {/* INFORMACIÓN PERSONAJE */}
                 <div style={{background: "white", textAlign: "left", fontFamily: "sans-serif", padding: "10px 20px 20px", borderRadius: "16px"}} >
                     <p>
                         <h1 className="py-4" style={{textAlign: "center"}}>MORDECAI</h1>
                         Responsable y algo más maduro que Rigby, pero también se deja llevar por la diversión. Le gusta el arte, la música y siempre trata de mantener el orden... aunque no siempre lo logra.
                         <br />
-                        <b>Animal:</b> Arrendajo. <br />
+                        <b>Animal:</b> Arrendajo azul. <br />
                         <b>Edad:</b> 23 años. <br />
                         <b>Altura:</b> 1,8 m <br />
                         <b>Habilidades:</b> resistencia, liderazgo, experto en videojuegos, bailarín, rapero, cantante, guitarrista. <br />
@@ -25,6 +26,7 @@ function pagesModel1() {
                         </ul>
                     </p>
                 </div>
+                 {/* MODELO 3D */}
                 <div style={{ minHeight: "80vh", background: "none" }}>
                     <ModelGrande1 />
                 </div>

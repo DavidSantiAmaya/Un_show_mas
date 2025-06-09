@@ -5,7 +5,8 @@ import ModelGrande2 from "../ModelGrande2/modelGrande2";
 function pagesModel2() {
     return (
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style={{ minHeight: "100vh", background: "none" }}>
-            <main className="px-3">     
+            <main className="px-3">  
+                {/* INFORMACIÓN PERSONAJE */}   
                 <div style={{background: "white", textAlign: "left", fontFamily: "sans-serif", padding: "10px 20px 20px", borderRadius: "16px"}} >
                     <p>
                         <h1 className="py-4" style={{textAlign: "center"}}>RIGBY</h1>
@@ -25,6 +26,7 @@ function pagesModel2() {
                         </ul>
                     </p>
                 </div>
+                {/* MODELO 3D */}
                 <div style={{ minHeight: "80vh", background: "none" }}>
                     <ModelGrande2 />
                 </div>

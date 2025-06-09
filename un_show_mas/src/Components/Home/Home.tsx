@@ -83,6 +83,16 @@ function Home() {
                 </button>
             </div>
 
+            {/* DESCRIPCIÓN DE LA SERIE */}
+            <div style={{background: "white", textAlign: "center", fontFamily: "sans-serif", padding: "40px", borderRadius: "16px", marginBottom:"30px"}} >
+                <p>
+                    <b>Un Show Más</b> (Regular Show) es una serie animada creada por J.G. Quintel para Cartoon Network. 
+                    La historia sigue las aventuras de dos amigos inseparables, Mordecai (un arrendajo azul) y Rigby (un mapache), 
+                    quienes trabajan como jardineros en un parque. Aunque sus tareas suelen ser simples, siempre terminan envueltos en situaciones fuera de lo común, 
+                    llenas de caos, humor absurdo y elementos sobrenaturales. 
+                    <br />
+                </p>
+            </div>
 
             {/* TARJETAS */}
 
