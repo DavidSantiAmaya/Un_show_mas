@@ -19,7 +19,7 @@ function Home() {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img
-                            src="/Img/Carousel_1.jpg"
+                            src="/Img/Carousel_3.jpg"
                             alt="Carousel Slide 1"
                             className="bd-placeholder-img"
                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -54,7 +54,7 @@ function Home() {
                     </div>
                     <div className="carousel-item">
                         <img
-                            src="/Img/Carousel_3.jpg"
+                            src="/Img/Carousel_1.jpg"
                             alt="Carousel Slide 1"
                             className="bd-placeholder-img"
                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
