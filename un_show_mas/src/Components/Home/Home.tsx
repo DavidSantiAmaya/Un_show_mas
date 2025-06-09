@@ -29,7 +29,7 @@ function Home() {
                                 <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
                                     <h1 style={{ color: "#fff" }}>Bienvenido a Un Show Más 3D</h1>
                                     <p className="opacity-95" style={{ color: "#ddd" }}>
-                                        Explora modelos 3D de tus personajes favoritos, descubre curiosidades y revive los mejores momentos de la serie. ¡Disfruta la experiencia interactiva en nuestra página web!
+                                        Explora modelos 3D de tus personajes favoritos, descubre curiosidades y revive los mejores momentos de la serie. <br /> ¡Disfruta la experiencia interactiva en nuestra página web!
                                     </p>
                                 </div>
                                 
@@ -48,7 +48,7 @@ function Home() {
                                 <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
                                 <h1 style={{ color: "#fff" }}>Descubre el mundo de Un Show Más</h1>
                                 <p className="opacity-95" style={{ color: "#ddd" }}>
-                                    Sumérgete en la diversión, explora los modelos 3D y conoce datos curiosos de tus personajes favoritos. ¡Vive la experiencia única que solo Un Show Más puede ofrecer!
+                                    Sumérgete en la diversión, explora los modelos 3D y conoce datos curiosos de tus personajes favoritos. <br />¡Vive la experiencia única que solo Un Show Más puede ofrecer!
                                 </p>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ function Home() {
                                 <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
                                     <h1 style={{ color: "#fff" }}>¡Explora y comparte!</h1>
                                     <p style={{ color: "#ddd" }}>
-                                        Comparte tus momentos favoritos y descubre más secretos de Un Show Más. ¡La aventura continúa en cada clic!
+                                        Comparte tus momentos favoritos y descubre más secretos de Un Show Más. <br />¡Cada uno de los personajes posee una canción singular!
                                     </p>
                                 </div>
                             </div>

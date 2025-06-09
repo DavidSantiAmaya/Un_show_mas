@@ -1,4 +1,5 @@
 
+import { color } from "three/tsl";
 import "./Footer.css";
 
 function Footer (){
@@ -7,13 +8,12 @@ function Footer (){
         <>
         
         <footer className="container">
-            <p className="float-end">
-                Back to top
-            </p>
+        <div className="pieie">
             <p>
                 &copy; 2017–2025 Company, Inc. &middot;{" "}
                 <a href="#">Inicio</a>
             </p>
+        </div>
         </footer>
 
         </>
