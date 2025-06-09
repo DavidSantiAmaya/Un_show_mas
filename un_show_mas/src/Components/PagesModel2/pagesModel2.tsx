@@ -5,10 +5,10 @@ import ModelGrande2 from "../ModelGrande2/modelGrande2";
 function pagesModel2() {
     return (
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style={{ minHeight: "100vh", background: "none" }}>
-            <main className="px-3">
-                <h1 className="py-4">RIGBY</h1>
+            <main className="px-3">     
                 <div style={{background: "white", textAlign: "left", fontFamily: "sans-serif", padding: "10px 20px 20px", borderRadius: "16px"}} >
                     <p>
+                        <h1 className="py-4" style={{textAlign: "center"}}>RIGBY</h1>
                         Impulsivo, perezoso y muy energético. A menudo es la causa de los problemas, pero su lealtad a Mordecai es inquebrantable. Su actitud despreocupada lo mete en muchos líos.
                         <br />
                         <b>Animal:</b> Mapache. <br />

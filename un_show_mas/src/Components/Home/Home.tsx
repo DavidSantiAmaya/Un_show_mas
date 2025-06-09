@@ -66,7 +66,7 @@ function Home() {
                                 <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
                                     <h1 style={{ color: "#fff" }}>¡Explora y comparte!</h1>
                                     <p style={{ color: "#ddd" }}>
-                                        Comparte tus momentos favoritos y descubre más secretos de Un Show Más. <br />¡Cada uno de los personajes posee una canción singular!
+                                        Comparte tus momentos favoritos y descubre más secretos de Un Show Más. <br />¡Hay una muestra de voz en cada uno de los personajes!
                                     </p>
                                 </div>
                             </div>
