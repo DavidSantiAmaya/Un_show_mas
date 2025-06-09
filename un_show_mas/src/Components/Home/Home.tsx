@@ -45,10 +45,12 @@ function Home() {
                         />
                         <div className="container">
                             <div className="carousel-caption">
+                                <div style={{ background: "rgba(0,0,0,0.7)", padding: "24px", borderRadius: "12px", display: "inline-block" }}>
                                 <h1 style={{ color: "#fff" }}>Descubre el mundo de Un Show Más</h1>
                                 <p className="opacity-95" style={{ color: "#ddd" }}>
                                     Sumérgete en la diversión, explora los modelos 3D y conoce datos curiosos de tus personajes favoritos. ¡Vive la experiencia única que solo Un Show Más puede ofrecer!
                                 </p>
+                                </div>
                             </div>
                         </div>
                     </div>
