@@ -25,10 +25,11 @@ function pagesModel1() {
                             <li>"¡Margarita, eres increíble!"</li>
                             <li>"¡Benson, no te enojes, por favor!"</li>
                         </ul>
-                    
                     </p>
                 </div>
-                <ModelGrande1 />
+                <div style={{ minHeight: "80vh", background: "none" }}>
+                    <ModelGrande1 />
+                </div>
             </main>
         </div>
     );
